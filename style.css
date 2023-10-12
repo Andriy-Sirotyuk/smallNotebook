@@ -1,0 +1,122 @@
+body {
+    font-family: sans-serif;
+    background-color: black;
+    margin-top: 10%;
+}
+
+.container {
+    margin: 0 auto;
+    width: 540px;
+    height: 520px;
+    border: 2px solid black;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-around;
+    background-color: white;
+}
+
+.btn {
+    margin-top: 45px;
+    height: 50px;
+    width: 100%;
+    background-color: #3c5a14;
+    border-radius: 25px;
+    font-size: 16px;
+    color: #ffffff;
+}
+.btn:hover {
+    background-color: #31d843;
+    color: black;
+}
+
+.create-task-form {
+    padding: 0 20px 0 20px;
+}
+
+.clear-tasks {
+    line-height: 0;
+    margin: 0;
+    height: 50px;
+    width: 100%;
+    background-color: #3c0919;
+    border-radius: 20px;
+    font-size: 16px;
+    color: #ffffff;
+}
+
+.clear-tasks:hover {
+    background-color: #af3800;
+    color: black;
+}
+
+.fa-remove {
+    color: #af3800;
+    border: 2px solid #3c0919;
+    border-radius: 5px;
+    font-size: 13px;
+    width: 15px;
+    text-align: center;
+}
+
+.fa-remove:hover {
+    cursor: pointer;
+    color: #3c0919;
+    background-color: #af3800;
+}
+
+.collection-item {
+    padding-top: 5px;
+    width: 208px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid black;
+}
+
+.edit-item {
+    color: blue;
+    font-size: 20px;
+    padding: 0;
+}
+.edit-item:hover {
+    cursor: pointer;
+    color: rgb(98, 177, 251);
+}
+
+.collection {
+    padding: 0;
+    width: 208px;
+    max-height: 300px;
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.task-title {
+    width: 208px;
+    text-align: center;
+    border-bottom: 2px solid black;
+}
+
+.filter-task-block {
+    padding: 0 20px 0 20px;
+}
+
+.filter-input {
+    margin-bottom: 15px;
+    text-align: center;
+    height: 40px;
+    width: 200px;
+    border-radius: 20px;
+    border: 2px solid lightgray;
+    font-size: 16px;
+}
+
+.task-input {
+    text-align: center;
+    height: 40px;
+    width: 200px;
+    border-radius: 20px;
+    border: 2px solid lightgray;
+    font-size: 16px;
+}
