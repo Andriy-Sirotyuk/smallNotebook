@@ -36,11 +36,14 @@ const removeTaskFromLocalStorage = (index) => {
     // localStorage.setItem(STORAGE_KEY, JSON.stringify(filteredTasks));
 
     // 2 - findIndex + splice
-    if (index >= 0 && index < tasks.length) {
-        tasks.splice(index, 1);
+    tasks.splice(index, 1);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+};
 
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
-    }
+const editTaskInLocalSrotage = (index, newTask) => {
+    const tasks = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+    tasks[index] = newTask;
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
 };
 
 // "tasks" functions
@@ -63,10 +66,10 @@ const addTask = (event) => {
     const index = tasks.length;
     li.dataset.index = index;
 
-    const edit = document.createElement("span");
-    edit.className = "edit-item";
-    edit.innerHTML = '<i class="fa fa-edit"></i>';
-    li.append(edit);
+    const editButton = document.createElement("span");
+    editButton.className = "edit-item";
+    editButton.innerHTML = '<i class="fa fa-edit"></i>';
+    li.append(editButton);
 
     const span = document.createElement("span");
     span.className = "delete-item";
@@ -96,22 +99,11 @@ const editTask = (event) => {
             const newEditText = prompt("Редагувати завдання:", editLi.textContent);
 
             if (newEditText !== null && newEditText !== "") {
-                editLi.textContent = newEditText;
-
-                const edit = document.createElement("span");
-                edit.className = "edit-item";
-                edit.innerHTML = '<i class="fa fa-edit"></i>';
-
-                const span = document.createElement("span");
-                span.className = "delete-item";
-                span.innerHTML = '<i class="fa fa-remove"></i>';
-
-                editLi.append(edit, span);
+                editLi.firstChild.textContent = newEditText;
 
                 const taskIndex = Array.from(editLi.parentElement.children).indexOf(editLi);
-                const tasks = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-                tasks[taskIndex] = newEditText;
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+
+                editTaskInLocalSrotage(taskIndex, newEditText);
             }
         }
     }
@@ -129,9 +121,10 @@ const removeTask = (event) => {
 
             if (index !== undefined) {
                 removeTaskFromLocalStorage(parseInt(index, 10));
+                deletedLi.remove();
+            } else {
+                console.error("Atrribute data-index is undefined");
             }
-
-            deletedLi.remove();
         }
     }
 };
@@ -156,16 +149,17 @@ const filterTasks = (event) => {
 const getTasks = () => {
     const tasks = getTasksFromStorage();
 
-    tasks.forEach((task) => {
+    tasks.forEach((task, index) => {
         // Create LI
         const li = document.createElement("li");
         li.className = "collection-item";
         li.textContent = task; // значення зі storage
+        li.dataset.index = index;
 
-        const edit = document.createElement("span");
-        edit.className = "edit-item";
-        edit.innerHTML = '<i class="fa fa-edit"></i>';
-        li.append(edit);
+        const editButton = document.createElement("span");
+        editButton.className = "edit-item";
+        editButton.innerHTML = '<i class="fa fa-edit"></i>';
+        li.append(editButton);
 
         const span = document.createElement("span");
         span.className = "delete-item";
