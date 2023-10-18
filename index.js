@@ -36,20 +36,14 @@ const removeTaskFromLocalStorage = (index) => {
     // localStorage.setItem(STORAGE_KEY, JSON.stringify(filteredTasks));
 
     // 2 - findIndex + splice
-    if (index) {
-        tasks.splice(index, 1);
-
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
-    }
+    tasks.splice(index, 1);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
 };
 
 const editTaskInLocalSrotage = (index, newTask) => {
     const tasks = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-
-    if (index >= 0 && index < tasks.length) {
-        tasks[index] = newTask;
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
-    }
+    tasks[index] = newTask;
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
 };
 
 // "tasks" functions
